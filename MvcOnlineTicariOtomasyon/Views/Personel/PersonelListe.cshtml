@@ -1,0 +1,108 @@
+﻿@using MvcOnlineTicariOtomasyon.Models.siniflar
+@model List<Personel>
+@{
+    ViewBag.Title = "PersonelListe";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="/css/plugins/fontawesome-free/css/all.min.css">
+<!-- Ionicons -->
+<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<!-- overlayScrollbars -->
+<link rel="stylesheet" href="/css/dist/css/adminlte.min.css">
+<!-- Google Font: Source Sans Pro -->
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <section class="content">
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>Personel</h1>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="card card-solid">
+                <div class="card-body pb-0">
+                    <div class="row d-flex align-items-stretch">
+                        @foreach (var x in Model)
+                        {
+                            <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
+                                <div class="card bg-light">
+                                    <div class="card-header text-muted border-bottom-0">
+                                        @x.Departman.DepartmanAd
+                                    </div>
+                                    <div class="card-body pt-0">
+                                        <div class="row">
+                                            <div class="col-7">
+                                                <h2 class="lead"><b>@x.PersoneAd @x.PersoneSoyad</b></h2>
+                                                <p class="text-muted text-sm"><b>About: </b> Web Designer / UX / Graphic Artist / Coffee Lover </p>
+                                                <ul class="ml-4 mb-0 fa-ul text-muted">
+                                                    <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Address: Demo Street 123, Demo City 04312, NJ</li>
+                                                    <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> Phone #: + 800 - 12 12 23 52</li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-5 text-center">
+                                                <img src="@x.PersoneGorsel" alt="" class="img-circle img-fluid">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="text-right">
+                                            @if (User.IsInRole("A"))
+                                            {
+                                                <a href="/Personel/PersonelGetir/@x.PersonelID" class="btn btn-sm btn-warning">
+                                                    Güncelle
+                                                </a>
+                                                <a href="/Departman/DepartmanPersonelSatis/@x.PersonelID" class="btn btn-sm btn-primary">
+                                                    Satış Geçmişi
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <a href="#" class="yetki btn btn-sm btn-warning">
+                                                    Güncelle
+                                                </a>
+                                                <a href="#" class="yetki btn btn-sm btn-primary">
+                                                    Satış Geçmişi
+                                                </a>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        @if (User.IsInRole("A"))
+        {
+            <a href="/Personel/YeniPersonel" class="btn btn-primary">Yeni Personel</a>
+        }
+        else
+        {
+            <a href="#" class="yetki btn btn-primary">Yeni Personel</a>
+        }
+
+        @*<aside class="control-sidebar control-sidebar-dark">
+        </aside>*@
+
+    </div>
+    <!-- jQuery -->
+    <script src="/css/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="/css/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="/css/dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="/css/dist/js/demo.js"></script>
+</body>
+

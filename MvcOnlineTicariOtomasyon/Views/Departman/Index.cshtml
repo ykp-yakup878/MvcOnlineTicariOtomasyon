@@ -1,0 +1,48 @@
+﻿@using MvcOnlineTicariOtomasyon.Models.siniflar;
+@model List<Departman>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<table class="table table-bordered mt-3" style="">
+    <tr>
+        <th>ID</th>
+        <th>Departman</th>
+        <th>İşlem</th>
+    </tr>
+    @foreach (var k in Model)
+    {
+        <tr>
+            <td>
+                @k.DepartmanID
+            </td>
+            <td>
+                @k.DepartmanAd
+            </td>
+            <td>
+                @if (User.IsInRole("A"))
+                {
+                    <a href="/Departman/DepartmanSil/@k.DepartmanID" class="btn btn-danger mr-1">Sil</a>
+                    <a href="/Departman/DepartmanGetir/@k.DepartmanID" class="btn btn-success">Güncelle</a>
+                }
+                else
+                {
+                    <a href="#" class="yetki btn btn-danger mr-1" onclick="yetki()">Sil</a>
+                    <a href="#" class="yetki btn btn-success" onclick="yetki()">Güncelle</a>
+                }
+                <a href="/Departman/DepartmanDetay/@k.DepartmanID" class="btn btn-info">Detay</a>
+            </td>
+        </tr>
+    }
+</table>
+
+@if (User.IsInRole("A"))
+{
+    <a href="/Departman/DepartmanEkle" class="btn btn-primary">Yeni Departman</a>
+}
+
+else
+{
+    <a href="#" class="yetki btn btn-primary" onclick="yetki()">Yeni Departman</a>
+}
+

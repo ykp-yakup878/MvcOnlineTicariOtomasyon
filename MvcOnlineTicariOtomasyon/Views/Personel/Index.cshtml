@@ -1,0 +1,61 @@
+﻿@using MvcOnlineTicariOtomasyon.Models.siniflar
+@model List<Personel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<table class="table table-bordered mt-3" style="">
+    <tr>
+        <th>ID</th>
+        <th>Personel Ad Soyad</th>
+        <th>Personel Görsel</th>
+        <th>Departaman</th>
+        <th>İşlem</th>
+    </tr>
+    @foreach (var k in Model)
+    {
+        <tr>
+            <td>
+                @k.PersonelID
+            </td>
+            <td>
+                @k.PersoneAd @k.PersoneSoyad
+            </td>
+
+            @if (User.IsInRole("A"))
+            {
+                <td>
+                    <img src="@k.PersoneGorsel" width="75" />
+                </td>
+            }
+            else
+            {
+                <td>*******</td>
+            }
+            <td>
+                @k.Departman.DepartmanAd
+            </td>
+            <td>
+                @if (User.IsInRole("A"))
+                {
+                    <a href="/Personel/PersonelGetir/@k.PersonelID" class="btn btn-success">Güncelle</a>
+                    <a href="/Departman/DepartmanPersonelSatis/@k.PersonelID" class="btn btn-info">Detay</a>
+                }
+                else
+                {
+                    <a href="#" class="yetki btn btn-success">Güncelle</a>
+                    <a href="#" class="yetki btn btn-info">Detay</a>
+                }
+
+            </td>
+        </tr>
+    }
+</table>
+@if (User.IsInRole("A"))
+{
+    <a href="/Personel/YeniPersonel" class="btn btn-primary">Yeni Personel</a>
+}
+else
+{
+    <a href="#" class="yetki btn btn-primary">Yeni Personel</a>
+}

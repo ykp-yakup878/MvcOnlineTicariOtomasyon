@@ -1,0 +1,30 @@
+﻿@model MvcOnlineTicariOtomasyon.Models.siniflar.Personel
+@{
+    ViewBag.Title = "PersonelGetir";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+<h2>Personel Güncelleme Sayfası</h2>
+<br />
+@using (Html.BeginForm("PersonelGuncelle", "Personel", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+<div class="form-group">
+    @Html.HiddenFor(x => x.PersonelID)
+    @Html.LabelFor(x => x.PersoneAd)
+    @Html.TextBoxFor(x => x.PersoneAd, new { @class = "form-control" })
+    @*@Html.ValidationMessageFor(x => x.CariAd, "", new { @style = "color:red" })*@
+    <br />
+    @Html.LabelFor(x => x.PersoneSoyad)
+    @Html.TextBoxFor(x => x.PersoneSoyad, new { @class = "form-control" })
+    @*@Html.ValidationMessageFor(x => x.CariSoyad, "", new { @style = "color:orange" })*@
+    <br />
+    @Html.LabelFor(x => x.PersoneGorsel)
+    @*@Html.TextBoxFor(x => x.PersoneGorsel, new { @class = "form-control" })*@
+    <input type="file" name="PersonelGorsel" />
+    <br />
+    @Html.LabelFor(x => x.Departman)
+    @Html.DropDownListFor(x => x.Departmanid, (List<SelectListItem>)ViewBag.dgr1, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-outline-warning">Güncelle</button>
+</div>
+}

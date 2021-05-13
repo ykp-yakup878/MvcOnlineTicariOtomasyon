@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+<button class="btn btn-danger" id="btn1">Button1</button>
+<button class="btn btn-danger" id="btn2">Button2</button>
+<button class="btn btn-danger" id="btn3">Button3</button>
+<button class="btn btn-danger" id="btn4">Button4</button>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script>
+    $('#btn1').click(function () {
+        swal("Hello World!");
+    });
+    $('#btn2').click(function () {
+        swal("Oops", "Something went wrong!", "error")
+
+    });
+    $('#btn3').click(function () {
+        swal("Hello World!");
+    });
+    $('#btn4').click(function () {
+        swal("Hello World!");
+    });
+</script>
+
+

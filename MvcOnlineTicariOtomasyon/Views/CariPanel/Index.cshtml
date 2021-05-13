@@ -1,0 +1,140 @@
+﻿@using MvcOnlineTicariOtomasyon.Models.siniflar
+@model List<Mesajlar>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_CariLayout.cshtml";
+}
+<!-- Font Awesome -->
+<link rel="stylesheet" href="~/css/plugins/fontawesome-free/css/all.min.css">
+<!-- Ionicons -->
+<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href="~/css/dist/css/adminlte.min.css">
+<!-- Google Font: Source Sans Pro -->
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Profil</h1>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-3">
+                        <!-- Profile Image -->
+                        <div class="card card-primary card-outline">
+                            <div class="card-body box-profile">
+                                <div class="text-center">
+                                    <img class="profile-user-img img-fluid img-circle"
+                                         src="~/Image/user.jpg"
+                                         alt="User profile picture">
+                                </div>
+                                <h3 class="profile-username text-center">@ViewBag.adsoyad</h3>
+                                <p class="text-muted text-center">@ViewBag.m</p>
+                                <ul class="list-group list-group-unbordered mb-3">
+                                    <li class="list-group-item">
+                                        <b>Toplam Satış</b> <a class="float-right">@ViewBag.toplamsatis</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <b>Toplam Tutar</b> <a class="float-right">@ViewBag.toplamtutar</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <b>Toplam Alınan Urun</b> <a class="float-right">@ViewBag.toplamurun</a>
+                                    </li>
+                                </ul>
+                                <a href="/CariPanel/Siparislerim" class="btn btn-primary btn-block"><b>Siparişlerim</b></a>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">Hakkımda</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <strong><i class="fas fa-book mr-1"></i> Meslek</strong>
+                                <p class="text-muted">
+                                    Yazılım Mühendisi
+                                </p>
+                                <hr>
+                                <strong><i class="fas fa-map-marker-alt mr-1"></i> Şehir</strong>
+                                <p class="text-muted">@ViewBag.sehir</p>
+                                <hr>
+                                <strong><i class="fas fa-pencil-alt mr-1"></i> Telefon</strong>
+                                <p class="text-muted">0532 641 11 22</p>
+                                <hr>
+                                <strong><i class="far fa-file-alt mr-1"></i> Not</strong>
+                                <p class="text-muted">Yola Çık! Yol Açık...</p>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-md-9">
+                        <div class="card">
+                            <div class="card-header p-2">
+                                <ul class="nav nav-pills">
+                                    <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Mesajlar</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Timeline</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Ayarlar</a></li>
+                                </ul>
+                            </div><!-- /.card-header -->
+                            <div class="card-body">
+                                <div class="tab-content">
+                                    <div class="active tab-pane" id="activity">
+                                        <!-- Post -->
+                                        @foreach (var x in Model)
+                                        {
+                                            <div class="post">
+                                                <div class="user-block">
+                                                    <img class="img-circle img-bordered-sm" src="~/Image/message.png" alt="user image">
+                                                    <span class="username">
+                                                        <a href="/CariPanel/MesajDetay/@x.MesajID">@x.Gonderen</a>
+                                                    </span>
+                                                    <span class="description">@x.Konu - @x.Tarih.ToShortDateString()</span>
+                                                </div>
+                                                <!-- /.user-block -->
+                                                <p>
+                                                    @x.Icerık
+
+                                                </p>
+                                            </div>
+                                        }
+
+                                    </div>
+                                    <!-- /.tab-pane -->
+                                    <div class="tab-pane" id="timeline">
+                                        @Html.Action("Partial2", "CariPanel")
+                                    </div>
+                                    <!-- /.tab-pane -->
+                                    <div class="tab-pane" id="settings">
+                                        @Html.Action("Partial1", "CariPanel")
+                                    </div>
+                                </div>
+                            </div><!-- /.card-body -->
+                        </div>
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- jQuery -->
+    <script src="~/css/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="~/css/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/css/dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="~/css/dist/js/demo.js"></script>
+</body>

@@ -1,0 +1,60 @@
+﻿@using MvcOnlineTicariOtomasyon.Models.siniflar;
+@model List<Cariler>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+<table class="table table-striped">
+    <tr>
+        <th>Cari ID</th>
+        <th>Ad</th>
+        <th>Soyad</th>
+        <th>Şehir</th>
+        <th>Mail</th>
+        <th>İşlemler</th>
+    </tr>
+    @foreach (var x in Model)
+    {
+        <tr>
+            <td>@x.CariID</td>
+            <td>@x.CariAd</td>
+            <td>@x.CariSoyad</td>
+            @if (User.IsInRole("A"))
+            {
+                <td>@x.CariSehir</td>
+                <td>@x.CariMail</td>
+            }
+            else
+            {
+                <td>******</td>
+                <td>******</td>
+            }
+
+            <td>
+                @if (User.IsInRole("A"))
+                {
+                    <a href="/Cari/CariSil/@x.CariID" class="btn btn-danger">Sil</a>
+                    <a href="/Cari/CariGetir/@x.CariID" class="btn btn-success">Güncelle</a>
+                    <a href="/Cari/MusteriSatis/@x.CariID" class="btn btn-info">Satış Geçmişi</a>
+                }
+                else
+                {
+                    <a href="#" class="yetki btn btn-danger">Sil</a>
+                    <a href="#" class="yetki btn btn-success">Güncelle</a>
+                    <a href="#" class="yetki btn btn-info">Satış Geçmişi</a>
+                }
+            </td>
+        </tr>
+    }
+</table>
+@if (User.IsInRole("A"))
+{
+    <a href="/Cari/YeniCari" class="btn btn-primary">Yeni Cari</a>
+}
+else
+{
+    <a href="#" class="yetki btn btn-primary">Yeni Cari</a>
+}
+
+

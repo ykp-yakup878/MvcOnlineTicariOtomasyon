@@ -1,0 +1,86 @@
+﻿@using MvcOnlineTicariOtomasyon.Models.siniflar
+@model List<Urun>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="fonts/icomoon/style.css">
+
+    <link rel="stylesheet" href="~/css/tcss/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/tcss/magnific-popup.css">
+    <link rel="stylesheet" href="~/css/tcss/jquery-ui.css">
+    <link rel="stylesheet" href="~/css/tcss/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/css/tcss/owl.theme.default.min.css">
+
+    <link rel="stylesheet" href="~/css/tcss/bootstrap-datepicker.css">
+
+    <link rel="stylesheet" href="~/css/tfonts/flaticon/font/flaticon.css">
+
+    <link rel="stylesheet" href="~/css/tcss/aos.css">
+    <link rel="stylesheet" href="~/css/tcss/jquery.scrollbar.css">
+    <link rel="stylesheet" href="~/css/tcss/fancybox.min.css">
+    <link rel="stylesheet" href="~/css/tcss/swiper.min.css">
+
+    <link rel="stylesheet" href="~/css/tcss/style.css">
+
+</head>
+<body>
+    <br />
+    <div class="site-wrap">
+        <main class="main-content">
+            <div class="container-fluid photos">
+                <div class="row align-items-stretch">
+                    @foreach (var x in Model)
+                    {
+                        <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up">
+                            <a href="@x.UrunGorsel" class="d-block photo-item" data-fancybox="gallery">
+                                <img src="@x.UrunGorsel" />
+                                <div class="photo-text-more">
+                                    <span class="icon icon-search"></span>
+                                </div>
+                            </a>
+                        </div>
+                    }
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-12 text-center py-5">
+                        <p>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            Copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div> <!-- .site-wrap -->
+
+    <script src="~/js/tjs/jquery-3.3.1.min.js"></script>
+    <script src="~/js/tjs/jquery-migrate-3.0.1.min.js"></script>
+    <script src="~/js/tjs/jquery-ui.js"></script>
+    <script src="~/js/tjs/popper.min.js"></script>
+    <script src="~/js/tjs/bootstrap.min.js"></script>
+    <script src="~/js/tjs/owl.carousel.min.js"></script>
+    <!-- <script src="js/jquery.stellar.min.js"></script> -->
+    <script src="~/js/tjs/jquery.countdown.min.js"></script>
+    <script src="~/js/tjs/jquery.magnific-popup.min.js"></script>
+    <script src="~/js/tjs/bootstrap-datepicker.min.js"></script>
+    <script src="~/js/tjs/aos.js"></script>
+
+    <script src="~/js/tjs/jquery.fancybox.min.js"></script>
+    <script src="~/js/tjs/swiper.min.js"></script>
+    <script src="~/js/tjs/jquery.scrollbar.js"></script>
+    <script src="~/js/tjs/main.js"></script>
+
+
+
+</body>
+</html>
